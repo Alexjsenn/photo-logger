@@ -27,7 +27,7 @@ export class globalState {
     newRoll(name:string, iso:number, size:number) {
         let id = 0;
         if (this.rollList.length != 0) {
-            id = this.rollList[-1].id + 1;
+            id = this.rollList[this.rollList.length - 1].id + 1;
         }
         let roll = new Roll(id, name, iso, size);
         this.rollList.push(roll);
