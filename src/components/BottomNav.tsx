@@ -7,6 +7,7 @@ import { Box, Paper, Grid } from '@mui/material';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import CameraOutlinedIcon from '@mui/icons-material/CameraOutlined';
 import CameraRollOutlinedIcon from '@mui/icons-material/CameraRollOutlined';
+import { grey } from '@mui/material/colors';
 
 const StyledLink = tw(
     NavLink
@@ -20,7 +21,7 @@ function GridItem(label: string, icon: any, route: string): JSX.Element {
                     {icon}
                 </Grid>
                 <Grid item>
-                    <div tw="font-extralight">{label}</div>
+                    <div tw="font-extralight text-white">{label}</div>
                 </Grid>
             </Grid>
         </NavLink>
@@ -29,16 +30,16 @@ function GridItem(label: string, icon: any, route: string): JSX.Element {
 
 export default function BottomNav(): JSX.Element {
     return (
-        <Box tw="h-16 fixed bottom-0 left-0 right-0 bg-hunter-green">
+        <Box tw="h-16 fixed bottom-0 left-0 right-0 bg-primary">
             <Grid container direction="row" justifyContent="center" alignItems="center">
                 <Grid item xs={4}>
-                    {GridItem("Home", <HomeOutlinedIcon/>, ROUTES.home)}
+                    {GridItem("Home", <HomeOutlinedIcon sx={{ color:grey[100] }}/>, ROUTES.home)}
                 </Grid>
                 <Grid item xs={4}>
-                    {GridItem("Shoot", <CameraOutlinedIcon/>, ROUTES.shoot)}
+                    {GridItem("Shoot", <CameraOutlinedIcon sx={{ color:grey[100] }}/>, ROUTES.shoot)}
                 </Grid>
                 <Grid item xs={4}>
-                    {GridItem("Rolls", <CameraRollOutlinedIcon/>, ROUTES.rollList)}
+                    {GridItem("Rolls", <CameraRollOutlinedIcon sx={{ color:grey[100] }}/>, ROUTES.rollList)}
                 </Grid>
             </Grid>
         </Box>

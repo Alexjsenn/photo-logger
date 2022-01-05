@@ -7,7 +7,9 @@ module.exports = {
       },
       colors: {
         'gray-light': '#ECECEC',
-        'hunter-green': '#3F704D'
+        'hunter-green': '#3F704D',
+        'primary': '#3f5165',
+        'primaryLight': '#757de8'
       },
       zIndex: {
         '-10': '-10',

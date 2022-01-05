@@ -1,0 +1,13 @@
+{"camera": {
+    "name": "Canon FT QL",
+    "shutterSpeedMin": 1,
+    "shutterSpeedMax": 0.001,
+    "lensList": [{
+        "id": 1,
+        "name": "FL50mm f/1.8",
+        "apertureMin": 1.8,
+        "apertureMax": 16,
+        "focalMin": 50,
+        "focalMax": 50
+        }]
+}}

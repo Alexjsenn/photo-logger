@@ -1,7 +1,8 @@
 const ROUTES = {
     home: '/',
     shoot: '/shoot',
-    rollList: '/rolls'
+    rollList: '/rolls',
+    newRoll: '/newRoll'
 };
 
 export default ROUTES;
