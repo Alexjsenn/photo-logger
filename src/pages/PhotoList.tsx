@@ -2,64 +2,53 @@ import React from 'react';
 import tw from 'twin.macro';
 import 'styled-components/macro';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Photo } from '../stateInfo/Photo';
+import { getGlobalState } from '../stateInfo/globalState';
+import PhotoIcon from '@mui/icons-material/Photo';
 
-/*
+
 export default function PhotoList(): JSX.Element {
+    let state = getGlobalState();
+    let rollList = state.rollList;
+    var idx: number;
+    var photoList: Photo[] = [];
+    for (let i = 0; i < rollList.length; i++) {
+        if (rollList[i].id == state.rollView) {
+            idx = i;
+            photoList = rollList[i].photos;
+            break;
+        }
+    }
+
     return(
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>#</TableCell>
-                        <TableCell align="left">Calories</TableCell>
-                        <TableCell align="left">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="left">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="left">Protein&nbsp;(g)</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                {rows.map((row) => (
-                    <TableRow
-                    key={row.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                    <TableCell component="th" scope="row">
-                        {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
-                    </TableRow>
-                ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <Box sx={{alignContent: 'center'}} tw="w-screen">
+            <List>
+                {photoList.map((photo) => item(photo))}
+            </List>
+        </Box>
     )
 }
 
-
 function item(photo: Photo): JSX.Element {
-    let prim = roll.name;
-    let second = "iso: " + roll.iso + ", size: " + roll.size;
+    let prim: string = '';
+    let second: string;
+    if (photo.description == '-') {
+        second = "Uninitialized"
+    } else {
+        prim = photo.description;
+        second = "f" + photo.aperture + " " + photo.focalLength + "mm " + photo.shutterSpeed;
+    }
+
     return (
         <ListItem disablePadding>
             <ListItemButton>
                 <ListItemIcon>
-                    <CameraRollOutlinedIcon />
+                    <PhotoIcon />
                 </ListItemIcon>
                 <ListItemText primary={prim} secondary={second} />
             </ListItemButton>
         </ListItem>
     )
-}*/
+}
 

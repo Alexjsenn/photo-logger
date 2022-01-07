@@ -8,6 +8,8 @@ export class globalState {
     rollList:Roll[];
     currentRoll:number;
     currentPhoto:number;
+    rollView:number;
+    photoView:number;
 
     contructor() {}
     constructor(camera?:Camera) {

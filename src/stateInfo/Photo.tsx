@@ -18,6 +18,6 @@ export class Photo {
         this.shutterSpeed = -1;
         this.lightMeter = -1;
         this.lensId = -1;
-        this.description = '';
+        this.description = '-';
     }
 }

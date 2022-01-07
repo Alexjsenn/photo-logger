@@ -4,7 +4,7 @@ import 'styled-components/macro'
 import { Box, Fab, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, SxProps } from '@mui/material';
 import CameraRollOutlinedIcon from '@mui/icons-material/CameraRollOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import { globalState, getGlobalState } from '../stateInfo/globalState'
+import { globalState, getGlobalState, setGlobalState } from '../stateInfo/globalState'
 import { useNavigate } from "react-router-dom";
 import ROUTES from '../config/routes';
 import { Roll } from '../stateInfo/Roll';
@@ -25,7 +25,7 @@ function RollList(): JSX.Element {
         <>
         <Box sx={{alignContent: 'center'}} tw="w-screen">
             <List>
-                {rolls.map((roll) => item(roll))}
+                {rolls.map((roll) => item(roll, state, navigate))}
             </List>
         </Box>
         <Fab sx={fabStyle as SxProps} aria-label='add' color='primary' 
@@ -38,12 +38,16 @@ function RollList(): JSX.Element {
     )
 }
 
-function item(roll: Roll): JSX.Element {
+function item(roll: Roll, state: any, navigate: any): JSX.Element {
     let prim = roll.name;
     let second = "iso: " + roll.iso + ", size: " + roll.size;
     return (
         <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => {
+                state.rollView = roll.id;
+                setGlobalState(state);
+                navigate(ROUTES.photoList);
+            }}>
                 <ListItemIcon>
                     <CameraRollOutlinedIcon />
                 </ListItemIcon>

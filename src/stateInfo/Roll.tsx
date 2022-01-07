@@ -18,6 +18,6 @@ export class Roll {
         for (let i = 0; i<size; i++) {
             photoList.push(new Photo(id, i));
         }
-        this.photos = [];
+        this.photos = photoList;
     }
 }

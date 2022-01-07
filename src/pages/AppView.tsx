@@ -29,7 +29,7 @@ export default function AppView({page, title}: appViewProps): JSX.Element {
                                 <ArrowBackIosIcon sx={{ color:grey[100] }}/>
                             </IconButton>
                         </Grid>
-                        <Grid item xs={10} alignItems="center" justifyContent="center" display="flex">
+                        <Grid item xs={9} alignItems="center" justifyContent="center" display="flex">
                             <h1 tw="text-2xl text-white">{title}</h1>
                         </Grid>
                         <Grid item>
