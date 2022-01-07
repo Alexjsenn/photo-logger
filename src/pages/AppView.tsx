@@ -17,7 +17,7 @@ interface appViewProps{
 export default function AppView({page, title}: appViewProps): JSX.Element {
     const navigate = useNavigate();
     return(
-        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={0}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={0} tw="h-full">
             <Grid item height={64}>
                 <Box justifyContent="center" alignItems="center" display="flex"
                         tw="h-16 fixed top-0 left-0 right-0 bg-primary">
