@@ -8,19 +8,19 @@ import Shoot from './pages/Shoot';
 import RollList from './pages/RollList';
 import NewRoll from './pages/NewRoll';
 import BottomNav from './components/BottomNav'
+import AppView from './pages/AppView';
+import { Settings } from './pages/Settings';
 
 function App(): JSX.Element {
     return (
         <Router>
-            <div tw="flex w-screen">
-                <Routes>
-                    <Route path={ROUTES.home} element={< Home />} />
-                    <Route path={ROUTES.shoot} element={< Shoot />} />
-                    <Route path={ROUTES.rollList} element={< RollList />} />
-                    <Route path={ROUTES.newRoll} element={< NewRoll />} />
-                </Routes>
-            </div>
-            <BottomNav/>
+            <Routes>
+                <Route path={ROUTES.home} element={ <AppView page={<Home/>} title='Home' /> } />
+                <Route path={ROUTES.shoot} element={ <AppView page={<Shoot/>} title='Current Picture' /> } />
+                <Route path={ROUTES.rollList} element={ <AppView page={<RollList/>} title='Your Photo Rolls' /> } />
+                <Route path={ROUTES.newRoll} element={ <AppView page={<NewRoll/>} title='New Roll' /> } />
+                <Route path={ROUTES.settings} element={ <AppView page={<Settings/>} title='Settings' /> } />
+            </Routes>
         </Router>
     )
 }

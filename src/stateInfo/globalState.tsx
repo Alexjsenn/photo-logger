@@ -72,3 +72,7 @@ export function setGlobalState(state: globalState) {
     var str = JSON.stringify(state);
     window.localStorage.setItem("globalState", str);
 }
+
+export function eraseGlobalState() {
+    window.localStorage.setItem("globalState", null);
+}

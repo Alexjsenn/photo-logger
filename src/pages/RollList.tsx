@@ -23,22 +23,15 @@ function RollList(): JSX.Element {
       
     return (
         <>
-        <Grid container direction="column" justifyContent="center" alignItems="center">
-            <Grid item>
-                <Box tw="bg-primary w-screen ">
-                    <h1 tw="text-xl text-white p-5">Your Photo Rolls</h1>
-                </Box>
-            </Grid>
-            <Grid item>
-                <Box sx={{alignContent: 'center'}} tw="w-screen">
-                    <List>
-                        {rolls.map((roll) => item(roll))}
-                    </List>
-                </Box>
-            </Grid>
-        </Grid>
+        <Box sx={{alignContent: 'center'}} tw="w-screen">
+            <List>
+                {rolls.map((roll) => item(roll))}
+            </List>
+        </Box>
         <Fab sx={fabStyle as SxProps} aria-label='add' color='primary' 
-            onClick={() => {navigate(ROUTES.newRoll)}}>
+            onClick={() => {
+                navigate(ROUTES.newRoll)
+                }}>
             <AddIcon/>
         </Fab>
         </>

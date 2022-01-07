@@ -13,7 +13,11 @@ export class Roll {
         this.name = name;
         this.iso = iso;
         this.size = size;
-        this.photos = [];
         this.full = false;
+        let photoList = [];
+        for (let i = 0; i<size; i++) {
+            photoList.push(new Photo(id, i));
+        }
+        this.photos = [];
     }
 }

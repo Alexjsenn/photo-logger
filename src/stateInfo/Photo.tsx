@@ -10,15 +10,14 @@ export class Photo {
     description:string;
     
 
-    constructor(rollID:number, photoNum:number, aperture:number, focalLength:number, shutterSpeed:number, 
-                    lightMeter:number, lensId:number) {
+    constructor(rollID:number, photoNum:number) {
         this.rollID = rollID;
         this.photoNum = photoNum;
-        this.aperture = aperture;
-        this.focalLength = focalLength;
-        this.shutterSpeed = shutterSpeed;
-        this.lightMeter = lightMeter;
-        this.lensId = lensId;
+        this.aperture = -1;
+        this.focalLength = -1;
+        this.shutterSpeed = -1;
+        this.lightMeter = -1;
+        this.lensId = -1;
         this.description = '';
     }
 }
