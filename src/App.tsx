@@ -11,6 +11,8 @@ import BottomNav from './components/BottomNav'
 import AppView from './pages/AppView';
 import { Settings } from './pages/Settings';
 import PhotoList from './pages/PhotoList';
+import { getGlobalState } from './stateInfo/globalState';
+import PhotoView from './pages/PhotoView';
 
 function App(): JSX.Element {
     return (
@@ -21,7 +23,8 @@ function App(): JSX.Element {
                 <Route path={ROUTES.rollList} element={ <AppView page={<RollList/>} title='Your Photo Rolls' /> } />
                 <Route path={ROUTES.newRoll} element={ <AppView page={<NewRoll/>} title='New Roll' /> } />
                 <Route path={ROUTES.settings} element={ <AppView page={<Settings/>} title='Settings' /> } />
-                <Route path={ROUTES.photoList} element={ <AppView page={<PhotoList/>} title='Photos' /> } />
+                <Route path={ROUTES.photoList} element={ <AppView page={<PhotoList/>} title="Photos" /> } />
+                <Route path={ROUTES.photoView} element={ <AppView page={<PhotoView/>} title="Photo" /> } />
             </Routes>
         </Router>
     )

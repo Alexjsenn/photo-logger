@@ -34,9 +34,6 @@ function NewRoll(): JSX.Element {
 
     return (
         <Grid container direction="column" justifyContent="center" alignItems="center">
-            <Box tw="w-screen content-center mt-4 ml-4">
-                <h1 tw="text-center text-2xl">Add a new roll!</h1>
-            </Box>
             <Box component="form">
                 <div tw="mt-5 mb-5">
                     <TextField

@@ -4,7 +4,8 @@ const ROUTES = {
     rollList: '/rolls',
     newRoll: '/newRoll',
     settings: '/settings',
-    photoList: '/photo'
+    photoList: '/photos',
+    photoView: '/photo'
 };
 
 export default ROUTES;

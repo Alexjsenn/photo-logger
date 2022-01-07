@@ -4,11 +4,14 @@ import 'styled-components/macro';
 import Box from '@mui/material/Box';
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Photo } from '../stateInfo/Photo';
-import { getGlobalState } from '../stateInfo/globalState';
+import { getGlobalState, setGlobalState } from '../stateInfo/globalState';
 import PhotoIcon from '@mui/icons-material/Photo';
+import { useNavigate } from 'react-router-dom';
+import ROUTES from '../config/routes';
 
 
 export default function PhotoList(): JSX.Element {
+    const navigate = useNavigate();
     let state = getGlobalState();
     let rollList = state.rollList;
     var idx: number;
@@ -24,25 +27,30 @@ export default function PhotoList(): JSX.Element {
     return(
         <Box sx={{alignContent: 'center'}} tw="w-screen">
             <List>
-                {photoList.map((photo) => item(photo))}
+                {photoList.map((photo) => item(photo, state, navigate))}
             </List>
         </Box>
     )
 }
 
-function item(photo: Photo): JSX.Element {
+function item(photo: Photo, state: any, navigate: any): JSX.Element {
     let prim: string = '';
     let second: string;
     if (photo.description == '-') {
-        second = "Uninitialized"
+        prim = (photo.photoNum + 1) + ":";
+        second = "Uninitialized";
     } else {
-        prim = photo.description;
+        prim = (photo.photoNum + 1) + ": " + photo.description;
         second = "f" + photo.aperture + " " + photo.focalLength + "mm " + photo.shutterSpeed;
     }
 
     return (
         <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => {
+                state.photoView = photo.photoNum;
+                setGlobalState(state);
+                navigate(ROUTES.photoView);
+            }}>
                 <ListItemIcon>
                     <PhotoIcon />
                 </ListItemIcon>

@@ -45,6 +45,7 @@ function item(roll: Roll, state: any, navigate: any): JSX.Element {
         <ListItem disablePadding>
             <ListItemButton onClick={() => {
                 state.rollView = roll.id;
+                state.rollName = roll.name;
                 setGlobalState(state);
                 navigate(ROUTES.photoList);
             }}>

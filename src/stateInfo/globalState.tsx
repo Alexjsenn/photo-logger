@@ -8,8 +8,9 @@ export class globalState {
     rollList:Roll[];
     currentRoll:number;
     currentPhoto:number;
-    rollView:number;
-    photoView:number;
+    rollView:number; // Indicates which roll is being viewed in the photoList page
+    rollName: string; // name of the roll being viewed "                        "
+    photoView:number; // Indicates which photo is being viewed in the photoView page
 
     contructor() {}
     constructor(camera?:Camera) {

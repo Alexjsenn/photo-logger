@@ -8,6 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate } from "react-router-dom";
 import { grey } from '@mui/material/colors';
 import ROUTES from '../config/routes';
+import { getGlobalState } from '../stateInfo/globalState';
 
 interface appViewProps{
     page: JSX.Element,
@@ -16,6 +17,11 @@ interface appViewProps{
 
 export default function AppView({page, title}: appViewProps): JSX.Element {
     const navigate = useNavigate();
+    if (title == 'Photos') {
+        title = getGlobalState().rollName;
+    } else if (title == 'Photo') {
+        title = "Photo #" + (getGlobalState().photoView + 1);
+    }
     return(
         <Grid container direction="column" justifyContent="center" alignItems="center" spacing={0} tw="h-full">
             <Grid item height={64}>
