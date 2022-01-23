@@ -4,11 +4,14 @@ import {
   getGlobalState,
   setGlobalState,
 } from "../stateInfo/globalState";
+import tw from "twin.macro";
+import "styled-components/macro";
 import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import CameraOutlinedIcon from "@mui/icons-material/CameraOutlined";
@@ -42,90 +45,90 @@ export default function NestedList() {
 
   return (
     <>
-      <List
-        sx={{ width: "auto", maxWidth: 360 }}
-        // sx={{alignContent: 'center'}} tw="w-screen">
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            Photo Logger v-0.2
-          </ListSubheader>
-        }
-      >
-        <ListItemButton onClick={handleClickCameras}>
-          <ListItemIcon>
-            <PhotoCameraOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Cameras" />
-          {openCameras ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+      <Box sx={{ alignContent: "center" }} tw="w-screen">
+        <List
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              Photo Logger v-0.2
+            </ListSubheader>
+          }
+        >
+          <ListItemButton onClick={handleClickCameras}>
+            <ListItemIcon>
+              <PhotoCameraOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Cameras" />
+            {openCameras ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
 
-        <Collapse in={openCameras} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton
-              sx={{ pl: 4 }}
-              onClick={() => {
-                navigate(ROUTES.newRoll);
-              }}
-            >
-              <ListItemIcon>
-                <AddCircleOutlineOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Add New" />
-            </ListItemButton>
-          </List>
-        </Collapse>
+          <Collapse in={openCameras} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => {
+                  navigate(ROUTES.newRoll);
+                }}
+              >
+                <ListItemIcon>
+                  <AddCircleOutlineOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add New" />
+              </ListItemButton>
+            </List>
+          </Collapse>
 
-        <ListItemButton onClick={handleClickLenses}>
-          <ListItemIcon>
-            <CameraOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Lenses" />
-          {openLenses ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+          <ListItemButton onClick={handleClickLenses}>
+            <ListItemIcon>
+              <CameraOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Lenses" />
+            {openLenses ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
 
-        <Collapse in={openLenses} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton
-              sx={{ pl: 4 }}
-              onClick={() => {
-                navigate(ROUTES.newLens);
-              }}
-            >
-              <ListItemIcon>
-                <AddCircleOutlineOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Add New" />
-            </ListItemButton>
-          </List>
-        </Collapse>
+          <Collapse in={openLenses} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => {
+                  navigate(ROUTES.newLens);
+                }}
+              >
+                <ListItemIcon>
+                  <AddCircleOutlineOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add New" />
+              </ListItemButton>
+            </List>
+          </Collapse>
 
-        <ListItemButton onClick={handleClickFilmRolls}>
-          <ListItemIcon>
-            <CameraRollOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Film Rolls" />
-          {openFilmRolls ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+          <ListItemButton onClick={handleClickFilmRolls}>
+            <ListItemIcon>
+              <CameraRollOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Film Rolls" />
+            {openFilmRolls ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
 
-        <Collapse in={openFilmRolls} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton
-              sx={{ pl: 4 }}
-              onClick={() => {
-                navigate(ROUTES.newRoll);
-              }}
-            >
-              <ListItemIcon>
-                <AddCircleOutlineOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Add New" />
-            </ListItemButton>
-            {rolls.map((roll) => itemFilmRoll(roll, state, navigate))}
-          </List>
-        </Collapse>
-      </List>
+          <Collapse in={openFilmRolls} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4 }}
+                onClick={() => {
+                  navigate(ROUTES.newRoll);
+                }}
+              >
+                <ListItemIcon>
+                  <AddCircleOutlineOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Add New" />
+              </ListItemButton>
+              {rolls.map((roll) => itemFilmRoll(roll, state, navigate))}
+            </List>
+          </Collapse>
+        </List>
+      </Box>
     </>
   );
 
