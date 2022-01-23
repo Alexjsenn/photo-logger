@@ -63,7 +63,12 @@ export default function NestedList() {
 
         <Collapse in={openCameras} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              onClick={() => {
+                navigate(ROUTES.newRoll);
+              }}
+            >
               <ListItemIcon>
                 <AddCircleOutlineOutlinedIcon />
               </ListItemIcon>
@@ -82,7 +87,12 @@ export default function NestedList() {
 
         <Collapse in={openLenses} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton
+              sx={{ pl: 4 }}
+              onClick={() => {
+                navigate(ROUTES.newLens);
+              }}
+            >
               <ListItemIcon>
                 <AddCircleOutlineOutlinedIcon />
               </ListItemIcon>

@@ -6,6 +6,8 @@ import ROUTES from "./config/routes";
 import Home from "./pages/Home";
 import Shoot from "./pages/Shoot";
 import RollList from "./pages/RollList";
+import NewLens from "./pages/NewLens";
+
 import NewRoll from "./pages/NewRoll";
 import BottomNav from "./components/BottomNav";
 import AppView from "./pages/AppView";
@@ -29,6 +31,10 @@ function App(): JSX.Element {
         <Route
           path={ROUTES.rollList}
           element={<AppView page={<RollList />} title="Your Photo Rolls" />}
+        />
+        <Route
+          path={ROUTES.newLens}
+          element={<AppView page={<NewLens />} title="New Lens" />}
         />
         <Route
           path={ROUTES.newRoll}
