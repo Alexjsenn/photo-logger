@@ -2,6 +2,7 @@ const ROUTES = {
   home: "/",
   shoot: "/shoot",
   rollList: "/rolls",
+  newCamera: "/newCamera",
   newRoll: "/newRoll",
   newLens: "/newLens",
   settings: "/settings",

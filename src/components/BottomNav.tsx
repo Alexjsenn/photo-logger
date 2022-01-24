@@ -54,13 +54,6 @@ export default function BottomNav(): JSX.Element {
             ROUTES.shoot
           )}
         </Grid>
-        <Grid item xs={4}>
-          {GridItem(
-            "Rolls",
-            <CameraRollOutlinedIcon sx={{ color: grey[100] }} />,
-            ROUTES.rollList
-          )}
-        </Grid>
       </Grid>
     </Box>
   );

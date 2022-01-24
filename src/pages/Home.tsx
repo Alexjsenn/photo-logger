@@ -68,7 +68,7 @@ export default function NestedList() {
               <ListItemButton
                 sx={{ pl: 4 }}
                 onClick={() => {
-                  navigate(ROUTES.newRoll);
+                  navigate(ROUTES.newCamera);
                 }}
               >
                 <ListItemIcon>
