@@ -37,71 +37,75 @@ function NewRoll(): JSX.Element {
   }, [size]);
 
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box component="form">
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="name-input"
-            label="Name"
-            variant="standard"
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="iso-input"
-            label="ISO"
-            type="number"
-            variant="standard"
-            onChange={(event) => {
-              if (event.target.value == "") setIso(null);
-              else setIso(+event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="size-input"
-            label="Number of photos"
-            type="number"
-            variant="standard"
-            onChange={(event) => {
-              if (event.target.value == "") setSize(null);
-              else setSize(+event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-10">
-          {validName && validISO && validSize ? (
-            <Button
-              variant="contained"
-              onClick={() => {
-                let state = getGlobalState();
-                state.newRoll(name, iso, size);
-                setGlobalState(state);
-                navigate(-1);
+    <Box sx={{ alignContent: "center" }} tw="w-screen">
+      <Grid
+        sx={{ px: 4, py: 4 }}
+        container
+        direction="column"
+        justifyContent="left"
+        alignItems="left"
+      >
+        <h1>Fill in the fields below to create a new roll</h1>
+        <Box component="form">
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="name-input"
+              label="Name"
+              variant="standard"
+              onChange={(event) => {
+                setName(event.target.value);
               }}
-            >
-              Create
-            </Button>
-          ) : (
-            <Button variant="contained" disabled>
-              Create
-            </Button>
-          )}
-        </div>
-      </Box>
-    </Grid>
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="iso-input"
+              label="ISO"
+              type="number"
+              variant="standard"
+              onChange={(event) => {
+                if (event.target.value == "") setIso(null);
+                else setIso(+event.target.value);
+              }}
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="size-input"
+              label="Number of photos"
+              type="number"
+              variant="standard"
+              onChange={(event) => {
+                if (event.target.value == "") setSize(null);
+                else setSize(+event.target.value);
+              }}
+              required
+            />
+          </div>
+          <div tw="mt-10">
+            {validName && validISO && validSize ? (
+              <Button
+                variant="contained"
+                onClick={() => {
+                  let state = getGlobalState();
+                  state.newRoll(name, iso, size);
+                  setGlobalState(state);
+                  navigate(-1);
+                }}
+              >
+                Create
+              </Button>
+            ) : (
+              <Button variant="contained" disabled>
+                Create
+              </Button>
+            )}
+          </div>
+        </Box>
+      </Grid>
+    </Box>
   );
 }
 

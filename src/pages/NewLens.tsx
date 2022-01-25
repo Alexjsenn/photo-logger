@@ -24,7 +24,7 @@ function NewLens(): JSX.Element {
   const [mount, setMount] = useState("");
   const [lengthMin, setLengthMin] = useState(null);
   const [lengthMax, setLengthMax] = useState(null);
-  const [aperture, setAperture] = useState(null);
+  const [aperture, setAperture] = useState([]);
   const [name, setName] = useState("");
 
   const [validBrand, setValidBrand] = useState(false);
@@ -55,122 +55,123 @@ function NewLens(): JSX.Element {
   }, [lengthMax]);
 
   useEffect(() => {
-    if (typeof aperture != "number") setValidAperture(false);
+    if (aperture.length == 0) setValidAperture(false);
     else setValidAperture(true);
   }, [aperture]);
 
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box component="form">
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="brand-input"
-            label="Brand"
-            variant="standard"
-            onChange={(event) => {
-              setBrand(event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="mount-input"
-            label="Mount"
-            variant="standard"
-            onChange={(event) => {
-              setMount(event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="min-length-input"
-            label="Focal Length (min)"
-            type="number"
-            variant="standard"
-            onChange={(event) => {
-              if (event.target.value == "") setLengthMin(null);
-              else setLengthMin(+event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            id="max-length-input"
-            label="Focal Length (max)"
-            type="number"
-            variant="standard"
-            onChange={(event) => {
-              if (event.target.value == "") setLengthMax(null);
-              else setLengthMax(+event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="aperture-input"
-            label="Aperture"
-            type="number"
-            variant="standard"
-            onChange={(event) => {
-              if (event.target.value == "") setAperture(null);
-              else setAperture(+event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div>
-          <Autocomplete
-            multiple
-            freeSolo
-            id="aperture2-input"
-            options={[]}
-            getOptionLabel={(option) => option.title}
-            renderInput={(params) => (
-              <TextField {...params} variant="standard" label="Aperture*" />
-            )}
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="name-input"
-            label="Name"
-            variant="standard"
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-        </div>
-        <div tw="mt-10">
-          {validBrand && validMount && validLengthMin && validAperture ? (
-            <Button
-              variant="contained"
-              onClick={() => {
-                let state = getGlobalState();
-                state.newRoll(brand, 0, aperture);
-                setGlobalState(state);
-                navigate(ROUTES.rollList);
+    <Box sx={{ alignContent: "center" }} tw="w-screen">
+      <Grid
+        sx={{ px: 4, py: 4 }}
+        container
+        direction="column"
+        justifyContent="left"
+        alignItems="left"
+      >
+        <h1>Fill in the fields below to create a new lens</h1>
+        <Box component="form">
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="brand-input"
+              label="Brand"
+              variant="standard"
+              onChange={(event) => {
+                setBrand(event.target.value);
               }}
-            >
-              Create
-            </Button>
-          ) : (
-            <Button variant="contained" disabled>
-              Create
-            </Button>
-          )}
-        </div>
-      </Box>
-    </Grid>
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="mount-input"
+              label="Mount"
+              variant="standard"
+              onChange={(event) => {
+                setMount(event.target.value);
+              }}
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="min-length-input"
+              label="Focal Length (min)"
+              type="number"
+              variant="standard"
+              onChange={(event) => {
+                if (event.target.value == "") setLengthMin(null);
+                else setLengthMin(+event.target.value);
+              }}
+              required
+            />
+          </div>
+          <div>
+            <TextField
+              id="max-length-input"
+              label="Focal Length (max)"
+              type="number"
+              variant="standard"
+              onChange={(event) => {
+                if (event.target.value == "") setLengthMax(null);
+                else setLengthMax(+event.target.value);
+              }}
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <Autocomplete
+              multiple
+              freeSolo
+              id="aperture-input"
+              options={[]}
+              renderTags={(value: readonly string[], getTagProps) =>
+                value.map((option: string, index: number) => (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Apertures*" />
+              )}
+              onChange={(event, value) => setAperture(value)}
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="name-input"
+              label="Name"
+              variant="standard"
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </div>
+          <div tw="mt-10">
+            {validBrand && validMount && validLengthMin && validAperture ? (
+              <Button
+                variant="contained"
+                onClick={() => {
+                  let state = getGlobalState();
+                  // brand;mount;lengthMin;lengthMax;aperture;name;
+                  //state.newRoll(brand, 0, aperture);
+                  setGlobalState(state);
+                  navigate(-1);
+                }}
+              >
+                Create
+              </Button>
+            ) : (
+              <Button variant="contained" disabled>
+                Create
+              </Button>
+            )}
+          </div>
+        </Box>
+      </Grid>
+    </Box>
   );
 }
 

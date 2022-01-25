@@ -52,113 +52,117 @@ function NewCamera(): JSX.Element {
   }, [speed]);
 
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box component="form">
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="brand-input"
-            label="Brand"
-            variant="standard"
-            onChange={(event) => {
-              setBrand(event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="model-input"
-            label="Model"
-            variant="standard"
-            onChange={(event) => {
-              setModel(event.target.value);
-            }}
-            required
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <Autocomplete
-            multiple
-            freeSolo
-            id="mount-input"
-            options={[]}
-            renderTags={(value: readonly string[], getTagProps) =>
-              value.map((option: string, index: number) => (
-                <Chip
-                  variant="outlined"
-                  label={option}
-                  {...getTagProps({ index })}
-                />
-              ))
-            }
-            renderInput={(params) => (
-              <TextField {...params} variant="standard" label="Mounts*" />
-            )}
-            onChange={(event, value) => setMount(value)}
-          />
-        </div>
-
-        <div tw="mt-5 mb-5">
-          <Autocomplete
-            multiple
-            freeSolo
-            id="speed-input"
-            options={[]}
-            renderTags={(value: readonly string[], getTagProps) =>
-              value.map((option: string, index: number) => (
-                <Chip
-                  variant="outlined"
-                  label={option}
-                  {...getTagProps({ index })}
-                />
-              ))
-            }
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Shutter Speeds*"
-              />
-            )}
-            onChange={(event, value) => setSpeed(value)}
-          />
-        </div>
-        <div tw="mt-5 mb-5">
-          <TextField
-            id="name-input"
-            label="Name"
-            variant="standard"
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-        </div>
-        <div tw="mt-10">
-          {validBrand && validModel && validMount && validSpeed ? (
-            <Button
-              variant="contained"
-              onClick={() => {
-                let state = getGlobalState();
-                //state.newCamera(brand, model, mount, speed, name);
-                //setGlobalState(state);
-                navigate(-1);
+    <Box sx={{ alignContent: "center" }} tw="w-screen">
+      <Grid
+        sx={{ px: 4, py: 4 }}
+        container
+        direction="column"
+        justifyContent="left"
+        alignItems="left"
+      >
+        <h1>Fill in the fields below to create a new camera</h1>
+        <Box component="form">
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="brand-input"
+              label="Brand"
+              variant="standard"
+              onChange={(event) => {
+                setBrand(event.target.value);
               }}
-            >
-              Create
-            </Button>
-          ) : (
-            <Button variant="contained" disabled>
-              Create
-            </Button>
-          )}
-        </div>
-      </Box>
-    </Grid>
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="model-input"
+              label="Model"
+              variant="standard"
+              onChange={(event) => {
+                setModel(event.target.value);
+              }}
+              required
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <Autocomplete
+              multiple
+              freeSolo
+              id="mount-input"
+              options={[]}
+              renderTags={(value: readonly string[], getTagProps) =>
+                value.map((option: string, index: number) => (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Mounts*" />
+              )}
+              onChange={(event, value) => setMount(value)}
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <Autocomplete
+              multiple
+              freeSolo
+              id="speed-input"
+              options={[]}
+              renderTags={(value: readonly string[], getTagProps) =>
+                value.map((option: string, index: number) => (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    {...getTagProps({ index })}
+                  />
+                ))
+              }
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="standard"
+                  label="Shutter Speeds*"
+                />
+              )}
+              onChange={(event, value) => setSpeed(value)}
+            />
+          </div>
+          <div tw="mt-5 mb-5">
+            <TextField
+              id="name-input"
+              label="Name"
+              variant="standard"
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </div>
+          <div tw="mt-10">
+            {validBrand && validModel && validMount && validSpeed ? (
+              <Button
+                variant="contained"
+                onClick={() => {
+                  let state = getGlobalState();
+                  // brand;model;mount;speed;name;
+                  //state.newCamera(brand, model, mount, speed, name);
+                  setGlobalState(state);
+                  navigate(-1);
+                }}
+              >
+                Create
+              </Button>
+            ) : (
+              <Button variant="contained" disabled>
+                Create
+              </Button>
+            )}
+          </div>
+        </Box>
+      </Grid>
+    </Box>
   );
 }
 
