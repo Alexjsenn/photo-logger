@@ -78,6 +78,7 @@ function NewLens(): JSX.Element {
               onChange={(event) => {
                 setBrand(event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -89,6 +90,7 @@ function NewLens(): JSX.Element {
               onChange={(event) => {
                 setMount(event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -102,6 +104,7 @@ function NewLens(): JSX.Element {
                 if (event.target.value == "") setLengthMin(null);
                 else setLengthMin(+event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -115,6 +118,7 @@ function NewLens(): JSX.Element {
                 if (event.target.value == "") setLengthMax(null);
                 else setLengthMax(+event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -147,6 +151,7 @@ function NewLens(): JSX.Element {
               onChange={(event) => {
                 setName(event.target.value);
               }}
+              fullWidth
             />
           </div>
           <div tw="mt-10">

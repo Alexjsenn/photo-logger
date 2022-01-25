@@ -70,6 +70,7 @@ function NewCamera(): JSX.Element {
               onChange={(event) => {
                 setBrand(event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -81,6 +82,7 @@ function NewCamera(): JSX.Element {
               onChange={(event) => {
                 setModel(event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -103,6 +105,7 @@ function NewCamera(): JSX.Element {
                 <TextField {...params} variant="standard" label="Mounts*" />
               )}
               onChange={(event, value) => setMount(value)}
+              fullWidth
             />
           </div>
           <div tw="mt-5 mb-5">
@@ -138,6 +141,7 @@ function NewCamera(): JSX.Element {
               onChange={(event) => {
                 setName(event.target.value);
               }}
+              fullWidth
             />
           </div>
           <div tw="mt-10">

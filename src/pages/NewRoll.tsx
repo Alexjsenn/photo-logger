@@ -55,6 +55,7 @@ function NewRoll(): JSX.Element {
               onChange={(event) => {
                 setName(event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -64,10 +65,12 @@ function NewRoll(): JSX.Element {
               label="ISO"
               type="number"
               variant="standard"
+              inputProps={{ min: "0", step: "10" }}
               onChange={(event) => {
                 if (event.target.value == "") setIso(null);
                 else setIso(+event.target.value);
               }}
+              fullWidth
               required
             />
           </div>
@@ -77,11 +80,13 @@ function NewRoll(): JSX.Element {
               label="Number of photos"
               type="number"
               variant="standard"
+              inputProps={{ min: "0", step: "1" }}
               onChange={(event) => {
                 if (event.target.value == "") setSize(null);
                 else setSize(+event.target.value);
               }}
               required
+              fullWidth
             />
           </div>
           <div tw="mt-10">
