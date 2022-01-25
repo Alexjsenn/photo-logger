@@ -68,7 +68,9 @@ function NewLens(): JSX.Element {
         justifyContent="left"
         alignItems="left"
       >
-        <h1>Fill in the fields below to create a new lens</h1>
+        <h1 style={{ fontFamily: "Arial" }}>
+          Fill in the fields below to create a new lens
+        </h1>
         <Box component="form">
           <div tw="mt-5 mb-5">
             <TextField
