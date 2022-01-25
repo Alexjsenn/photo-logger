@@ -16,16 +16,18 @@ import PhotoList from "./pages/PhotoList";
 import { getGlobalState } from "./stateInfo/globalState";
 import PhotoView from "./pages/PhotoView";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 function App(): JSX.Element {
-  const darkTheme = createTheme({
+  const theme = createTheme({
     palette: {
       mode: "dark",
     },
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         <Routes>
           <Route

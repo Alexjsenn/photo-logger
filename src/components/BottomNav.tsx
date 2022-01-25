@@ -24,7 +24,7 @@ function GridItem(label: string, icon: any, route: string): JSX.Element {
       >
         <Grid item>{icon}</Grid>
         <Grid item>
-          <div tw="font-extralight text-white">{label}</div>
+          <div tw="font-extralight text-white font-sans">{label}</div>
         </Grid>
       </Grid>
     </NavLink>

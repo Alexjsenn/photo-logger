@@ -56,7 +56,7 @@ export default function AppView({ page, title }: appViewProps): JSX.Element {
               justifyContent="center"
               display="flex"
             >
-              <h1 tw="text-2xl text-white">{title}</h1>
+              <h1 tw="text-2xl text-white font-sans">{title}</h1>
             </Grid>
             <Grid item>
               <IconButton
