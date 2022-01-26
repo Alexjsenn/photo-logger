@@ -22,11 +22,13 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../config/routes";
 import { Roll } from "../stateInfo/Roll";
+import { Lens } from "../stateInfo/Lens";
 
 export default function NestedList() {
   let navigate = useNavigate();
   let state = getGlobalState();
   let rolls = state.rollList;
+  let lenses = state.lensList;
 
   const [openCameras, setOpenCameras] = React.useState(false);
   const handleClickCameras = () => {
@@ -100,6 +102,7 @@ export default function NestedList() {
                 </ListItemIcon>
                 <ListItemText primary="Add New" />
               </ListItemButton>
+              {lenses.map((lens) => itemLens(lens, state, navigate))}
             </List>
           </Collapse>
 
@@ -144,6 +147,23 @@ export default function NestedList() {
           setGlobalState(state);
           navigate(ROUTES.photoList);
         }}
+      >
+        <ListItemText primary={prim} secondary={second} />
+      </ListItemButton>
+    );
+  }
+  function itemLens(lens: Lens, state: any, navigate: any): JSX.Element {
+    let prim = lens.name;
+    let second = "ISO: ";
+    return (
+      <ListItemButton
+        sx={{ pl: 4 }}
+        // onClick={() => {
+        //   state.lensView = lens.id;
+        //   state.lensName = lens.name;
+        //   setGlobalState(state);
+        //   navigate(ROUTES.photoList);
+        // }}
       >
         <ListItemText primary={prim} secondary={second} />
       </ListItemButton>

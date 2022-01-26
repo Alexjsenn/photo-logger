@@ -162,9 +162,9 @@ function NewLens(): JSX.Element {
                 variant="contained"
                 onClick={() => {
                   let state = getGlobalState();
-                  // brand;mount;lengthMin;lengthMax;aperture;name;
-                  //state.newRoll(brand, 0, aperture);
+                  state.newLens(brand, mount, lengthMin, lengthMax, name);
                   setGlobalState(state);
+                  console.log(Object.keys(state.lensList));
                   navigate(-1);
                 }}
               >
