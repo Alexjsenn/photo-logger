@@ -44,14 +44,14 @@ export class globalState {
     mount?: string,
     lengthMin?: number,
     lengthMax?: number,
-    //aperture?: any[],
+    aperture?: any[],
     name?: string
   ) {
     let id = 0;
     if (this.lensList.length != 0) {
       id = this.lensList[this.lensList.length - 1].id + 1;
     }
-    let lens = new Lens(id, brand, mount, lengthMin, lengthMax, name);
+    let lens = new Lens(id, brand, mount, lengthMin, lengthMax, aperture, name);
     this.lensList.push(lens);
     setGlobalState(this);
   }

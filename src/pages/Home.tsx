@@ -12,6 +12,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import Collapse from "@mui/material/Collapse";
 import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import CameraOutlinedIcon from "@mui/icons-material/CameraOutlined";
@@ -57,6 +58,7 @@ export default function NestedList() {
             </ListSubheader>
           }
         >
+          <Divider variant="middle" />
           <ListItemButton onClick={handleClickCameras}>
             <ListItemIcon>
               <PhotoCameraOutlinedIcon />
@@ -68,7 +70,7 @@ export default function NestedList() {
           <Collapse in={openCameras} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
-                sx={{ pl: 4 }}
+                sx={{ pl: 8 }}
                 onClick={() => {
                   navigate(ROUTES.newCamera);
                 }}
@@ -80,7 +82,7 @@ export default function NestedList() {
               </ListItemButton>
             </List>
           </Collapse>
-
+          <Divider variant="middle" />
           <ListItemButton onClick={handleClickLenses}>
             <ListItemIcon>
               <CameraOutlinedIcon />
@@ -92,7 +94,7 @@ export default function NestedList() {
           <Collapse in={openLenses} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
-                sx={{ pl: 4 }}
+                sx={{ pl: 8 }}
                 onClick={() => {
                   navigate(ROUTES.newLens);
                 }}
@@ -105,7 +107,7 @@ export default function NestedList() {
               {lenses.map((lens) => itemLens(lens, state, navigate))}
             </List>
           </Collapse>
-
+          <Divider variant="middle" />
           <ListItemButton onClick={handleClickFilmRolls}>
             <ListItemIcon>
               <CameraRollOutlinedIcon />
@@ -117,7 +119,7 @@ export default function NestedList() {
           <Collapse in={openFilmRolls} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
-                sx={{ pl: 4 }}
+                sx={{ pl: 8 }}
                 onClick={() => {
                   navigate(ROUTES.newRoll);
                 }}
@@ -130,6 +132,7 @@ export default function NestedList() {
               {rolls.map((roll) => itemFilmRoll(roll, state, navigate))}
             </List>
           </Collapse>
+          <Divider variant="middle" />
         </List>
       </Box>
     </>
@@ -140,7 +143,7 @@ export default function NestedList() {
     let second = "ISO: " + roll.iso + ", Size: " + roll.size;
     return (
       <ListItemButton
-        sx={{ pl: 4 }}
+        sx={{ pl: 8 }}
         onClick={() => {
           state.rollView = roll.id;
           state.rollName = roll.name;
@@ -153,11 +156,19 @@ export default function NestedList() {
     );
   }
   function itemLens(lens: Lens, state: any, navigate: any): JSX.Element {
-    let prim = lens.name;
-    let second = "ISO: ";
+    let focalLengt = lens.lengthMin + "-" + lens.lengthMax + "mm";
+    let prim =
+      lens.brand +
+      " " +
+      lens.mount +
+      " " +
+      focalLengt +
+      "  f/" +
+      lens.aperture[0];
+    let second = lens.name;
     return (
       <ListItemButton
-        sx={{ pl: 4 }}
+        sx={{ pl: 8 }}
         // onClick={() => {
         //   state.lensView = lens.id;
         //   state.lensName = lens.name;

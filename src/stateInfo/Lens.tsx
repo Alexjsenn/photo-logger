@@ -1,12 +1,10 @@
-// brand;mount;lengthMin;lengthMax;aperture;name;
-
 export class Lens {
   id: number;
   brand: string;
   mount: string;
   lengthMin: number;
   lengthMax: number;
-  //aperture: any[];
+  aperture: any[];
   name: string = "";
 
   constructor(
@@ -15,7 +13,7 @@ export class Lens {
     mount?: string,
     lengthMin?: number,
     lengthMax?: number,
-    //aperture?: any[],
+    aperture?: any[],
     name?: string
   ) {
     if (id) this.id = id;
@@ -23,6 +21,7 @@ export class Lens {
     if (mount) this.mount = mount;
     if (lengthMin) this.lengthMin = lengthMin;
     if (lengthMax) this.lengthMax = lengthMax;
+    if (aperture) this.aperture = aperture;
     if (name) this.name = name;
   }
 
