@@ -7,6 +7,7 @@ export class globalState {
   camera: Camera;
   lensList: Lens[];
   rollList: Roll[];
+  cameraList: Camera[];
   currentRoll: number;
   currentPhoto: number;
   rollView: number; // Indicates which roll is being viewed in the photoList page
@@ -15,12 +16,14 @@ export class globalState {
 
   //   contructor() {}
   constructor(camera?: Camera) {
-    if (camera) this.camera = camera;
-    else this.camera = new Camera("unkown", 0, 0, []);
+    // if (camera) this.camera = camera;
+    // else this.camera = new Camera("unkown", 0, 0, []);
     this.rollList = [];
     this.lensList = [];
+    this.cameraList = [];
     this.currentRoll = -1;
     this.currentPhoto = -1;
+    console.log("constructor");
   }
 
   static fromJSON(obj: Object): globalState {
@@ -29,13 +32,21 @@ export class globalState {
     return o;
   }
 
-  newRoll(name: string, iso: number, size: number) {
+  // brand;model;mount;speed;name;
+  newCamera(
+    brand?: string,
+    model?: string,
+    mount?: any[],
+    speed?: any[],
+    name?: string
+  ) {
+    console.log("a");
     let id = 0;
-    if (this.rollList.length != 0) {
-      id = this.rollList[this.rollList.length - 1].id + 1;
+    if (this.cameraList.length != 0) {
+      id = this.cameraList[this.cameraList.length - 1].id + 1;
     }
-    let roll = new Roll(id, name, iso, size);
-    this.rollList.push(roll);
+    let camera2 = new Camera(id, brand, model, mount, speed, name);
+    this.cameraList.push(camera2);
     setGlobalState(this);
   }
 
@@ -53,6 +64,16 @@ export class globalState {
     }
     let lens = new Lens(id, brand, mount, lengthMin, lengthMax, aperture, name);
     this.lensList.push(lens);
+    setGlobalState(this);
+  }
+
+  newRoll(name: string, iso: number, size: number) {
+    let id = 0;
+    if (this.rollList.length != 0) {
+      id = this.rollList[this.rollList.length - 1].id + 1;
+    }
+    let roll = new Roll(id, name, iso, size);
+    this.rollList.push(roll);
     setGlobalState(this);
   }
 }
@@ -73,15 +94,16 @@ export function initGlobalState() {
   //       )
   //     );
   //   }
-  var camera = new Camera(
-    cameraInfo.name,
-    cameraInfo.shutterSpeedMin,
-    cameraInfo.shutterSpeedMax,
-    lensList
-  );
-  var state = new globalState(camera);
-  var str = JSON.stringify(state);
-  window.localStorage.setItem("globalState", str);
+  // var camera = new Camera(
+  //   cameraInfo.name,
+  //   cameraInfo.shutterSpeedMin,
+  //   cameraInfo.shutterSpeedMax,
+  //   lensList
+  // );
+  // var state = new globalState(camera);
+  // var str = JSON.stringify(state);
+  // window.localStorage.setItem("globalState", str);
+  // console.log("init");
 }
 
 export function getGlobalState(): globalState | null {

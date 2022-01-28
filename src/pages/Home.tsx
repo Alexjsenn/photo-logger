@@ -24,12 +24,14 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../config/routes";
 import { Roll } from "../stateInfo/Roll";
 import { Lens } from "../stateInfo/Lens";
+import { Camera } from "../stateInfo/Camera";
 
 export default function NestedList() {
   let navigate = useNavigate();
   let state = getGlobalState();
-  let rolls = state.rollList;
+  let cameras = state.cameraList;
   let lenses = state.lensList;
+  let rolls = state.rollList;
 
   const [openCameras, setOpenCameras] = React.useState(false);
   const handleClickCameras = () => {
@@ -66,7 +68,6 @@ export default function NestedList() {
             <ListItemText primary="Cameras" />
             {openCameras ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-
           <Collapse in={openCameras} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
@@ -80,6 +81,7 @@ export default function NestedList() {
                 </ListItemIcon>
                 <ListItemText primary="Add New" />
               </ListItemButton>
+              {cameras.map((camera) => itemCamera(camera, state, navigate))}
             </List>
           </Collapse>
           <Divider variant="middle" />
@@ -90,7 +92,6 @@ export default function NestedList() {
             <ListItemText primary="Lenses" />
             {openLenses ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-
           <Collapse in={openLenses} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
@@ -115,7 +116,6 @@ export default function NestedList() {
             <ListItemText primary="Film Rolls" />
             {openFilmRolls ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-
           <Collapse in={openFilmRolls} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton
@@ -138,6 +138,23 @@ export default function NestedList() {
     </>
   );
 
+  function itemCamera(camera: Camera, state: any, navigate: any): JSX.Element {
+    let prim = camera.brand + " " + camera.model;
+    let second = camera.name;
+    return (
+      <ListItemButton
+        sx={{ pl: 8 }}
+        // onClick={() => {
+        //   state.cameraView = camera.id;
+        //   state.cameraName = camera.name;
+        //   setGlobalState(state);
+        //   navigate(ROUTES.photoList);
+        // }}
+      >
+        <ListItemText primary={prim} secondary={second} />
+      </ListItemButton>
+    );
+  }
   function itemFilmRoll(roll: Roll, state: any, navigate: any): JSX.Element {
     let prim = roll.name;
     let second = "ISO: " + roll.iso + ", Size: " + roll.size;

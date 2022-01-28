@@ -153,7 +153,7 @@ function NewCamera(): JSX.Element {
                 onClick={() => {
                   let state = getGlobalState();
                   // brand;model;mount;speed;name;
-                  //state.newCamera(brand, model, mount, speed, name);
+                  state.newCamera(brand, model, mount, speed, name);
                   setGlobalState(state);
                   navigate(-1);
                 }}

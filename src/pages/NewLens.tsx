@@ -171,7 +171,6 @@ function NewLens(): JSX.Element {
                     name
                   );
                   setGlobalState(state);
-                  console.log(Object.keys(state.lensList));
                   navigate(-1);
                 }}
               >
