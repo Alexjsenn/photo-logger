@@ -56,7 +56,7 @@ export default function NestedList() {
           aria-labelledby="nested-list-subheader"
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
-              Photo Logger v-0.2
+              {state.appName}
             </ListSubheader>
           }
         >

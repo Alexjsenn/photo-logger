@@ -2,8 +2,11 @@ import { Camera } from "./Camera";
 import { Roll } from "./Roll";
 import { Lens } from "./Lens";
 import cameraJson from "../config/camera.json";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export class globalState {
+  appName = "Photo Logger v-0.3";
+  theme: string;
   camera: Camera;
   lensList: Lens[];
   rollList: Roll[];
@@ -16,14 +19,12 @@ export class globalState {
 
   //   contructor() {}
   constructor(camera?: Camera) {
-    // if (camera) this.camera = camera;
-    // else this.camera = new Camera("unkown", 0, 0, []);
+    this.theme = "dark";
     this.rollList = [];
     this.lensList = [];
     this.cameraList = [];
     this.currentRoll = -1;
     this.currentPhoto = -1;
-    console.log("constructor");
   }
 
   static fromJSON(obj: Object): globalState {
@@ -40,7 +41,6 @@ export class globalState {
     speed?: any[],
     name?: string
   ) {
-    console.log("a");
     let id = 0;
     if (this.cameraList.length != 0) {
       id = this.cameraList[this.cameraList.length - 1].id + 1;
