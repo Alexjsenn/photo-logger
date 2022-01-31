@@ -8,7 +8,9 @@ import {
 } from "../stateInfo/globalState";
 import { useNavigate } from "react-router-dom";
 import ShootPanel from "../components/ShootPanel";
-import { Box, Button } from "@mui/material";
+import { Box, Button, InputLabel, FormControl, MenuItem } from "@mui/material";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import ROUTES from "../config/routes";
 
 function Shoot(): JSX.Element {
   let navigate = useNavigate();
@@ -16,6 +18,15 @@ function Shoot(): JSX.Element {
   const [validCamera, setValidCamera] = useState(false);
   const [validLens, setValidLens] = useState(false);
   const [validRoll, setValidRoll] = useState(false);
+  const [currentRoll, setCurrentRoll] = useState("");
+
+  const handleCurrentRollChange = (event: SelectChangeEvent) => {
+    setCurrentRoll(event.target.value as string);
+  };
+
+  const currentRollItems = state.rollList.map((aRoll) => (
+    <MenuItem value={aRoll.id}> {aRoll.name}</MenuItem>
+  ));
 
   useEffect(() => {
     if (state.cameraList.length == 0) setValidCamera(false);
@@ -34,8 +45,21 @@ function Shoot(): JSX.Element {
 
   if (validCamera && validLens && validRoll)
     return (
-      <Box tw="w-screen content-center mt-4 ml-4">
-        <ShootPanel />
+      <Box tw="w-screen content-center m-4">
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Roll</InputLabel>
+          <Select
+            labelId="current-roll-select-label"
+            id="current-roll-select"
+            value={currentRoll}
+            label="Roll"
+            onChange={handleCurrentRollChange}
+          >
+            {currentRollItems}
+          </Select>
+        </FormControl>
+        {currentRoll}
+        <ShootPanel currentRoll={currentRoll} />
       </Box>
     );
   else
@@ -49,7 +73,7 @@ function Shoot(): JSX.Element {
           color="error"
           sx={{ m: 4 }}
           onClick={() => {
-            navigate(-1);
+            navigate(ROUTES.home);
           }}
         >
           Add presets

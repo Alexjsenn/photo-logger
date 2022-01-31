@@ -76,6 +76,10 @@ export class globalState {
     this.rollList.push(roll);
     setGlobalState(this);
   }
+
+  setCurrentRoll(rollID: number) {
+    this.currentRoll = rollID;
+  }
 }
 
 export function initGlobalState() {

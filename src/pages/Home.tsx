@@ -173,7 +173,10 @@ export default function NestedList() {
     );
   }
   function itemLens(lens: Lens, state: any, navigate: any): JSX.Element {
-    let focalLengt = lens.lengthMin + "-" + lens.lengthMax + "mm";
+    let focalLengt =
+      lens.lengthMin == lens.lengthMax
+        ? lens.lengthMin + "mm"
+        : lens.lengthMin + "-" + lens.lengthMax + "mm";
     let prim =
       lens.brand +
       " " +

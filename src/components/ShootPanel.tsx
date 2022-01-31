@@ -17,8 +17,10 @@ import {
 import MuiInput from "@mui/material/Input";
 import { getGlobalState } from "../stateInfo/globalState";
 
-// #, desc, ev, sp, ap, iso, lens, length, geo,
-export default function ShootPanel(): JSX.Element {
+// #, desc,time, ev, sp, ap, iso, lens, length, geo,
+export default function ShootPanel(props: {
+  currentRoll: string;
+}): JSX.Element {
   let state = getGlobalState();
   let activeCamera = 0;
   let activeLens = 0;
@@ -125,36 +127,42 @@ export default function ShootPanel(): JSX.Element {
       >
         {apertureItems}
       </ToggleButtonGroup>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item>Length</Grid>
-        <Grid item xs>
-          <Slider
-            value={
-              typeof photoLength === "number"
-                ? photoLength
-                : state.lensList[activeLens].lengthMin
-            }
-            onChange={handlePhotoLengthSliderChange}
-            min={state.lensList[activeLens].lengthMin}
-            max={state.lensList[activeLens].lengthMax}
-            step={5}
-          />
+      {state.lensList[activeLens].lengthMin ==
+      state.lensList[activeLens].lengthMax ? (
+        <p>aa</p>
+      ) : (
+        <Grid container spacing={2} alignItems="center">
+          <Grid item>Length</Grid>
+          <Grid item xs>
+            <Slider
+              value={
+                typeof photoLength === "number"
+                  ? photoLength
+                  : state.lensList[activeLens].lengthMin
+              }
+              onChange={handlePhotoLengthSliderChange}
+              min={state.lensList[activeLens].lengthMin}
+              max={state.lensList[activeLens].lengthMax}
+              step={5}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              value={photoLength}
+              size="small"
+              variant="outlined"
+              onChange={handlePhotoLengthInputChange}
+              onBlur={handleBlur}
+              inputProps={{
+                step: 5,
+                min: state.lensList[activeLens].lengthMin,
+                max: state.lensList[activeLens].lengthMax,
+                type: "number",
+              }}
+            />
+          </Grid>
         </Grid>
-        <Grid item>
-          <Input
-            value={photoLength}
-            size="small"
-            onChange={handlePhotoLengthInputChange}
-            onBlur={handleBlur}
-            inputProps={{
-              step: 5,
-              min: state.lensList[activeLens].lengthMin,
-              max: state.lensList[activeLens].lengthMax,
-              type: "number",
-            }}
-          />
-        </Grid>
-      </Grid>
+      )}
       <Divider variant="middle" />
       <Divider variant="middle" />
       {photoDescription}
