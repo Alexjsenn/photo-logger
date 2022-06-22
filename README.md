@@ -15,6 +15,11 @@ Primarily this relates to how the app stores the user's information. Ideally use
 
 The app has been deployed with Heroku and integrated to automatically deploy the master branch of this repo.
 
+![rolls](https://user-images.githubusercontent.com/28233112/175133985-dfdcde20-83b2-4b94-83c9-28bb41775fbc.jpeg)
+![photoconfig](https://user-images.githubusercontent.com/28233112/175133998-f0e4cea9-8a2d-4b53-acab-3aeee2902537.jpeg)
+![photolist](https://user-images.githubusercontent.com/28233112/175134011-670c31a3-fc41-4848-959d-057c2768baf2.jpeg)
+
+
 ## Development
 
 In the project directory, you can run:
