@@ -1,11 +1,13 @@
 const ROUTES = {
-    home: '/',
-    shoot: '/shoot',
-    rollList: '/rolls',
-    newRoll: '/newRoll',
-    settings: '/settings',
-    photoList: '/photos',
-    photoView: '/photo'
+  home: "/",
+  shoot: "/shoot",
+  rollList: "/rolls",
+  newCamera: "/newCamera",
+  newRoll: "/newRoll",
+  newLens: "/newLens",
+  settings: "/settings",
+  photoList: "/photos",
+  photoView: "/photo",
 };
 
 export default ROUTES;
