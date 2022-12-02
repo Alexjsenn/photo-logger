@@ -112,9 +112,14 @@ export function initGlobalState() {
 
 export function getGlobalState(): globalState | null {
   var str = window.localStorage.getItem("globalState");
-  if (str == null) return null;
-  var obj = JSON.parse(str);
-  return globalState.fromJSON(obj);
+  if (str == null) {
+    console.log("making blank state");
+    return new globalState();
+  } else {
+    console.log("getting state from window.localStorage");
+    var obj = JSON.parse(str);
+    return globalState.fromJSON(obj);
+  }
 }
 
 export function setGlobalState(state: globalState) {
